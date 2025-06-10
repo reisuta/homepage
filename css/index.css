@@ -1,7 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: black;
   animation-name: first-fadein;
   animation-duration: 6s;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  overflow: hidden;
 }
 
 @keyframes first-fadein {
@@ -16,66 +24,163 @@ body {
 
 #video_wrap {
   position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #video_wrap video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
 #video_wrap #title {
   animation: flash 3s linear infinite;
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  text-align:center;
-  font-size:30px;
+  text-align: center;
+  font-size: clamp(24px, 4vw, 36px);
   color: #770000;
-  font-family:serif;
-}
-
-@keyframes flash {
-  0% 100%{
-    color: #770000;
-  }
-  47%{
-    color: #770000;
-  }
-  50%{
-    color: white;
-  }
-  53%{
-    color: #770000;
-  }
+  font-family: serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
 }
 
 #video_wrap #name {
   animation: flash2 3s linear infinite;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: clamp(32px, 5vw, 48px);
+  color: gray;
+  font-family: serif;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+#video_wrap #subtitle {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: clamp(14px, 2.5vw, 20px);
+  color: #ccc;
+  font-family: 'Helvetica', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInUp 2s ease-in-out 3s forwards;
+}
+
+#video_wrap #enter_btn {
+  position: absolute;
   top: 75%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  text-align:center;
-  font-size:30px;
-  color: gray;
-  font-family:serif;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInUp 2s ease-in-out 4s forwards;
+}
+
+#enter_btn button {
+  background: linear-gradient(135deg, #770000, #aa0000);
+  color: white;
+  border: 2px solid #fff;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-family: serif;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(119, 0, 0, 0.4);
+}
+
+#enter_btn button:hover {
+  background: linear-gradient(135deg, #aa0000, #dd0000);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(119, 0, 0, 0.6);
+}
+
+@keyframes flash {
+  0%, 100% {
+    color: #770000;
+  }
+  47% {
+    color: #770000;
+  }
+  50% {
+    color: white;
+  }
+  53% {
+    color: #770000;
+  }
 }
 
 @keyframes flash2 {
-  0% 100%{
+  0%, 100% {
     color: gray;
   }
-  48%{
+  48% {
     color: gray;
   }
-  51%{
+  51% {
     color: #770000;
   }
-  54%{
+  54% {
     color: gray;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  #video_wrap #title {
+    top: 30%;
+    font-size: clamp(20px, 6vw, 28px);
+  }
+
+  #video_wrap #name {
+    top: 45%;
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  #video_wrap #subtitle {
+    top: 55%;
+    font-size: clamp(12px, 4vw, 16px);
+  }
+
+  #video_wrap #enter_btn {
+    top: 70%;
+  }
+
+  #enter_btn button {
+    padding: 10px 25px;
+    font-size: 14px;
   }
 }
 
