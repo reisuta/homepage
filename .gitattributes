@@ -1,0 +1,8 @@
+# Templates: Tera is not in linguist, classify as Jinja (closest match)
+templates/**/*.html linguist-language=Jinja
+
+# Markdown is `prose` type → excluded by default; force inclusion
+*.md linguist-detectable=true
+
+# TOML is `data` type → excluded by default; force inclusion
+*.toml linguist-detectable=true
