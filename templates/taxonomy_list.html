@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}タグ一覧 — {{ config.title }}{% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ get_url(path='css/blog.css') }}">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="blog-wrap">
+  <header class="blog-header">
+    <h1>タグ一覧</h1>
+    <p class="blog-subtitle">記事を分類しているタグの一覧です</p>
+  </header>
+
+  <ul class="post-list">
+    {% for term in terms %}
+      <li class="post-card">
+        <a href="{{ term.permalink | safe }}" class="post-link">
+          <h2 class="post-title">#{{ term.name }}</h2>
+          <p class="post-description">{{ term.pages | length }} 件の記事</p>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="back-link"><a href="{{ get_url(path='@/blog/_index.md') | safe }}">← 日記一覧</a></p>
+</div>
+
+<footer id="footer">
+  <p>© 2021 reisuta</p>
+</footer>
+{% endblock content %}

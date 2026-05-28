@@ -5,11 +5,21 @@ default_language = "ja"
 
 compile_sass = false
 build_search_index = false
-generate_feeds = false
+generate_feeds = true
 minify_html = false
+
+taxonomies = [
+  { name = "tags", feed = true },
+]
 
 [markdown]
 smart_punctuation = false
+
+[markdown.highlighting]
+theme = "monokai"
+
+[slugify]
+taxonomies = "safe"
 
 [extra]
 author = "reisuta"
