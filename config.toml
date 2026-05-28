@@ -1,0 +1,15 @@
+base_url = "https://reisuta.github.io/homepage/"
+title = "reisuta — 私の好きな暗黒芸術について"
+description = "Software Engineer & Metal Enthusiast"
+default_language = "ja"
+
+compile_sass = false
+build_search_index = false
+generate_feeds = false
+minify_html = false
+
+[markdown]
+smart_punctuation = false
+
+[extra]
+author = "reisuta"

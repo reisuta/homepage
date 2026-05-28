@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ get_url(path='css/metal.css') }}">
+{% endblock stylesheets %}
+
+{% block content %}
+<div id="header_wrap">
+  <header id="header">
+    <h1 id="metal_title">{{ page.title }}</h1>
+  </header>
+</div>
+
+<div id="main">
+  <section id="overview" class="wrapper">
+    <div class="img_wrap">
+      <img src="{{ get_url(path='img/ink.png') }}" alt="">
+      <h2 class="img_title">概要</h2>
+    </div>
+
+    <div class="content">
+      {{ page.content | safe }}
+    </div>
+  </section>
+
+  <section class="wrapper">
+    <div class="img_wrap">
+      <img src="{{ get_url(path='img/ink.png') }}" alt="">
+      <h2 class="img_title">バンド</h2>
+    </div>
+
+    <div class="content">
+      <p>{{ page.extra.bands_example }}</p>
+    </div>
+  </section>
+</div>
+
+<footer id="footer">
+  <p>© 2021 reisuta</p>
+</footer>
+{% endblock content %}

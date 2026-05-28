@@ -95,9 +95,11 @@ body {
   animation: fadeInUp 2s ease-in-out 4s forwards;
 }
 
-#enter_btn button {
+#enter_btn .enter-btn {
+  display: inline-block;
   background: linear-gradient(135deg, #770000, #aa0000);
   color: white;
+  text-decoration: none;
   border: 2px solid #fff;
   padding: 12px 30px;
   font-size: 16px;
@@ -110,7 +112,7 @@ body {
   box-shadow: 0 4px 15px rgba(119, 0, 0, 0.4);
 }
 
-#enter_btn button:hover {
+#enter_btn .enter-btn:hover {
   background: linear-gradient(135deg, #aa0000, #dd0000);
   transform: scale(1.05);
   box-shadow: 0 6px 20px rgba(119, 0, 0, 0.6);
@@ -178,7 +180,7 @@ body {
     top: 70%;
   }
 
-  #enter_btn button {
+  #enter_btn .enter-btn {
     padding: 10px 25px;
     font-size: 14px;
   }
