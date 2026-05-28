@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}自己紹介HP{% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ get_url(path='css/index.css') }}">
+{% endblock stylesheets %}
+
+{% block head_extra %}
+<meta http-equiv="refresh" content="20;url={{ get_url(path='@/main.md') | safe }}">
+{% endblock head_extra %}
+
+{% block body_attrs %} id="main"{% endblock body_attrs %}
+
+{% block content %}
+<div id="video_wrap">
+  <div id="title">私の好きな暗黒芸術について</div>
+  <div id="name">reisuta</div>
+  <div id="subtitle">Software Engineer &amp; Metal Enthusiast</div>
+  <div id="enter_btn">
+    <a class="enter-btn" href="{{ get_url(path='@/main.md') | safe }}">Enter</a>
+  </div>
+  <video src="{{ get_url(path='img/thunder.mp4') }}" autoplay muted loop playsinline></video>
+</div>
+{% endblock content %}

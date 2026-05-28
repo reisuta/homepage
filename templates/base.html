@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+    {% block stylesheets %}{% endblock stylesheets %}
+    {% block head_extra %}{% endblock head_extra %}
+  </head>
+  <body{% block body_attrs %}{% endblock body_attrs %}>
+    {% block content %}{% endblock content %}
+  </body>
+</html>
