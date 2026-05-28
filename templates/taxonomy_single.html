@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}#{{ term.name }} — {{ config.title }}{% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ get_url(path='css/blog.css') }}">
+{% endblock stylesheets %}
+
+{% block head_extra %}
+{% if config.generate_feeds %}
+<link rel="alternate" type="application/atom+xml" title="#{{ term.name }}" href="{{ get_url(path=term.permalink ~ 'atom.xml') | safe }}">
+{% endif %}
+{% endblock head_extra %}
+
+{% block content %}
+<div class="blog-wrap">
+  <header class="blog-header">
+    <h1>#{{ term.name }}</h1>
+    <p class="blog-subtitle">{{ term.pages | length }} 件の記事</p>
+  </header>
+
+  <ul class="post-list">
+    {% for post in term.pages %}
+      <li class="post-card">
+        <a href="{{ post.permalink | safe }}" class="post-link">
+          <time class="post-date" datetime="{{ post.date }}">{{ post.date | date(format='%Y-%m-%d') }}</time>
+          <h2 class="post-title">{{ post.title }}</h2>
+          {% if post.description %}
+            <p class="post-description">{{ post.description }}</p>
+          {% endif %}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="back-link"><a href="{{ get_url(path='@/blog/_index.md') | safe }}">← 日記一覧</a></p>
+</div>
+
+<footer id="footer">
+  <p>© 2021 reisuta</p>
+</footer>
+{% endblock content %}

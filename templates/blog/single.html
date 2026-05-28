@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — 日記{% endblock title %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ get_url(path='css/blog.css') }}">
+{% endblock stylesheets %}
+
+{% block head_extra %}
+{% if page.description %}
+<meta name="description" content="{{ page.description }}">
+{% endif %}
+{% endblock head_extra %}
+
+{% block content %}
+<div class="blog-wrap">
+  <article class="post-single">
+    <header class="post-single-header">
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta">
+        <time datetime="{{ page.date }}">{{ page.date | date(format='%Y-%m-%d') }}</time>
+        <span class="dot">·</span>
+        <span class="reading-time">{{ page.reading_time }} 分</span>
+        {% if page.taxonomies.tags %}
+          <span class="dot">·</span>
+          <span class="post-tags">
+            {% for tag in page.taxonomies.tags %}
+              <span class="tag">#{{ tag }}</span>
+            {% endfor %}
+          </span>
+        {% endif %}
+      </div>
+    </header>
+
+    {% if page.toc | length > 0 %}
+      <nav class="toc" aria-label="目次">
+        <h2 class="toc-title">目次</h2>
+        <ol>
+          {% for h1 in page.toc %}
+            <li><a href="#{{ h1.id | safe }}">{{ h1.title }}</a>
+              {% if h1.children %}
+                <ol>
+                  {% for h2 in h1.children %}
+                    <li><a href="#{{ h2.id | safe }}">{{ h2.title }}</a></li>
+                  {% endfor %}
+                </ol>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      </nav>
+    {% endif %}
+
+    <div class="post-body">
+      {{ page.content | safe }}
+    </div>
+  </article>
+
+  <nav class="post-nav">
+    {% if page.lower %}
+      <a class="prev-post" href="{{ page.lower.permalink | safe }}">← {{ page.lower.title }}</a>
+    {% endif %}
+    {% if page.higher %}
+      <a class="next-post" href="{{ page.higher.permalink | safe }}">{{ page.higher.title }} →</a>
+    {% endif %}
+  </nav>
+
+  <p class="back-link"><a href="{{ get_url(path='@/blog/_index.md') | safe }}">← 日記一覧</a></p>
+</div>
+
+<footer id="footer">
+  <p>© 2021 reisuta</p>
+</footer>
+{% endblock content %}
